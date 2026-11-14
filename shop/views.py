@@ -1,14 +1,15 @@
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Album, Artist, Genre, Wishlist
+from .permissions import IsAdminOrReadOnly
 from .serializers import AlbumSerializer, ArtistSerializer, GenreSerializer
 
 
 class ArtistListView(APIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
     def get(self, request):
         artists = Artist.objects.all()
@@ -24,7 +25,7 @@ class ArtistListView(APIView):
 
 
 class GenreListView(APIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
     def get(self, request):
         genres = Genre.objects.all()
@@ -40,7 +41,7 @@ class GenreListView(APIView):
 
 
 class ArtistDetailView(APIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
     def get(self, request, pk):
         try:
@@ -80,7 +81,7 @@ class ArtistDetailView(APIView):
 
 
 class AlbumListView(APIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
     def get(self, request):
         albums = Album.objects.all()
@@ -108,7 +109,7 @@ class AlbumListView(APIView):
 
 
 class AlbumDetailView(APIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
     def get(self, request, pk):
         try:
