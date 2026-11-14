@@ -18,4 +18,13 @@ class GenreSerializer(serializers.ModelSerializer):
 class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
-        fields = ["id", "title", "price", "in_stock", "artist", "genre"]
+        fields = [
+            "id",
+            "title",
+            "price",
+            "in_stock",
+            "cover_url",
+            "year",
+            "artist",
+            "genre",
+        ]

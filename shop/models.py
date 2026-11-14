@@ -20,6 +20,8 @@ class Album(models.Model):
     title = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     in_stock = models.BooleanField(default=True)
+    cover_url = models.URLField(blank=True)
+    year = models.PositiveIntegerField(null=True, blank=True)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="albums")
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name="albums")
 
