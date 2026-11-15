@@ -6,7 +6,9 @@ from .models import Album, Artist, Genre
 
 class WishlistTests(APITestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="StrongPass2026!")
+        self.user = User.objects.create_user(
+            username="testuser", password="StrongPass2026!"
+        )
         artist = Artist.objects.create(name="The Beatles")
         genre = Genre.objects.create(name="Rock")
         self.album = Album.objects.create(
