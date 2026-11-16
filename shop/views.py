@@ -87,15 +87,28 @@ class AlbumListView(APIView):
         albums = Album.objects.all()
 
         search = request.query_params.get("search")
-        artist_id = request.query_params.get("artist_id")
-        genre_id = request.query_params.get("genre_id")
+        genre = request.query_params.get("genre")
+        artist = request.query_params.get("artist")
+        min_price = request.query_params.get("min_price")
+        max_price = request.query_params.get("max_price")
+        in_stock = request.query_params.get("in_stock")
 
         if search:
             albums = albums.filter(title__icontains=search)
-        if artist_id:
-            albums = albums.filter(artist_id=artist_id)
-        if genre_id:
-            albums = albums.filter(genre_id=genre_id)
+        if genre:
+            albums = albums.filter(genre_id=genre)
+        if artist:
+            albums = albums.filter(artist_id=artist)
+        if min_price:
+            albums = albums.filter(price__gte=min_price)
+        if max_price:
+            albums = albums.filter(price__lte=max_price)
+        if in_stock is not None:
+            in_stock_lower = in_stock.lower()
+            if in_stock_lower == "true":
+                albums = albums.filter(in_stock=True)
+            elif in_stock_lower == "false":
+                albums = albums.filter(in_stock=False)
 
         serializer = AlbumSerializer(albums, many=True)
         return Response(serializer.data)
