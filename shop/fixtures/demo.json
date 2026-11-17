@@ -1,0 +1,369 @@
+[
+  {
+    "model": "shop.genre",
+    "pk": 1,
+    "fields": {
+      "name": "Rock"
+    }
+  },
+  {
+    "model": "shop.genre",
+    "pk": 2,
+    "fields": {
+      "name": "Pop"
+    }
+  },
+  {
+    "model": "shop.genre",
+    "pk": 3,
+    "fields": {
+      "name": "Hip-Hop"
+    }
+  },
+  {
+    "model": "shop.genre",
+    "pk": 4,
+    "fields": {
+      "name": "Electronic"
+    }
+  },
+  {
+    "model": "shop.genre",
+    "pk": 5,
+    "fields": {
+      "name": "Jazz"
+    }
+  },
+  {
+    "model": "shop.genre",
+    "pk": 6,
+    "fields": {
+      "name": "Alternative"
+    }
+  },
+  {
+    "model": "shop.genre",
+    "pk": 7,
+    "fields": {
+      "name": "Soul & R&B"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 1,
+    "fields": {
+      "name": "The Beatles"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 2,
+    "fields": {
+      "name": "Pink Floyd"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 3,
+    "fields": {
+      "name": "Queen"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 4,
+    "fields": {
+      "name": "Michael Jackson"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 5,
+    "fields": {
+      "name": "Daft Punk"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 6,
+    "fields": {
+      "name": "Nirvana"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 7,
+    "fields": {
+      "name": "Radiohead"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 8,
+    "fields": {
+      "name": "Kendrick Lamar"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 9,
+    "fields": {
+      "name": "Amy Winehouse"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 10,
+    "fields": {
+      "name": "Miles Davis"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 11,
+    "fields": {
+      "name": "Arctic Monkeys"
+    }
+  },
+  {
+    "model": "shop.artist",
+    "pk": 12,
+    "fields": {
+      "name": "Lana Del Rey"
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 1,
+    "fields": {
+      "title": "Abbey Road",
+      "price": "1150.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/aa94ab293730bb7845d2aa8c672b2c29/500x500-000000-80-0-0.jpg",
+      "year": 1969,
+      "artist": 1,
+      "genre": 1
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 2,
+    "fields": {
+      "title": "Sgt. Peppers Lonely Hearts Club Band",
+      "price": "1200.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/4fcb73352b17d47429a273c5112632b0/500x500-000000-80-0-0.jpg",
+      "year": 1967,
+      "artist": 1,
+      "genre": 1
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 3,
+    "fields": {
+      "title": "The Dark Side of the Moon",
+      "price": "1350.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/e635a8510c1a74bc089b3566ebbb9cb8/500x500-000000-80-0-0.jpg",
+      "year": 1973,
+      "artist": 2,
+      "genre": 1
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 4,
+    "fields": {
+      "title": "The Wall",
+      "price": "1500.00",
+      "in_stock": false,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/2bea643b92a8fc6b19a23756f718cbd4/500x500-000000-80-0-0.jpg",
+      "year": 1979,
+      "artist": 2,
+      "genre": 1
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 5,
+    "fields": {
+      "title": "A Night at the Opera",
+      "price": "1100.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/0b56f4eee05fa1ea753c5654b2cdb70c/500x500-000000-80-0-0.jpg",
+      "year": 1975,
+      "artist": 3,
+      "genre": 1
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 6,
+    "fields": {
+      "title": "Thriller",
+      "price": "1050.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/f01e09ceb8ad1e96707c1b4aadb5911b/500x500-000000-80-0-0.jpg",
+      "year": 1982,
+      "artist": 4,
+      "genre": 2
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 7,
+    "fields": {
+      "title": "Bad",
+      "price": "980.00",
+      "in_stock": false,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/cad261eafd0c6c15811200d5039b5b50/500x500-000000-80-0-0.jpg",
+      "year": 1987,
+      "artist": 4,
+      "genre": 2
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 8,
+    "fields": {
+      "title": "Random Access Memories",
+      "price": "1400.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/311bba0fc112d15f72c8b5a65f0456c1/500x500-000000-80-0-0.jpg",
+      "year": 2013,
+      "artist": 5,
+      "genre": 4
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 9,
+    "fields": {
+      "title": "Discovery",
+      "price": "1250.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/5718f7c81c27e0b2417e2a4c45224f8a/500x500-000000-80-0-0.jpg",
+      "year": 2001,
+      "artist": 5,
+      "genre": 4
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 10,
+    "fields": {
+      "title": "Nevermind",
+      "price": "1090.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/f0282817b697279e56df13909962a54a/500x500-000000-80-0-0.jpg",
+      "year": 1991,
+      "artist": 6,
+      "genre": 6
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 11,
+    "fields": {
+      "title": "OK Computer",
+      "price": "1300.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/05a186e0a859a36f9cd51cdae2158fe1/500x500-000000-80-0-0.jpg",
+      "year": 1997,
+      "artist": 7,
+      "genre": 6
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 12,
+    "fields": {
+      "title": "In Rainbows",
+      "price": "1190.00",
+      "in_stock": false,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/a175af9b7d329bc678cb4d26fc13d6de/500x500-000000-80-0-0.jpg",
+      "year": 2007,
+      "artist": 7,
+      "genre": 6
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 13,
+    "fields": {
+      "title": "DAMN.",
+      "price": "1280.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/7ce6b8452fae425557067db6e6a1cad5/500x500-000000-80-0-0.jpg",
+      "year": 2017,
+      "artist": 8,
+      "genre": 3
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 14,
+    "fields": {
+      "title": "good kid, m.A.A.d city",
+      "price": "1220.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/b5be27644d505bad7bdb516fe4165475/500x500-000000-80-0-0.jpg",
+      "year": 2012,
+      "artist": 8,
+      "genre": 3
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 15,
+    "fields": {
+      "title": "Back to Black",
+      "price": "1120.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/5772b495f0dcdf660d0fc88c4c38a3fa/500x500-000000-80-0-0.jpg",
+      "year": 2006,
+      "artist": 9,
+      "genre": 7
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 16,
+    "fields": {
+      "title": "Kind of Blue",
+      "price": "1320.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/fb9fbd93db667e24d4f5dee781e83f7d/500x500-000000-80-0-0.jpg",
+      "year": 1959,
+      "artist": 10,
+      "genre": 5
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 17,
+    "fields": {
+      "title": "AM",
+      "price": "1040.00",
+      "in_stock": true,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/64e54e307bd5e2bdb27ffeb662fd910d/500x500-000000-80-0-0.jpg",
+      "year": 2013,
+      "artist": 11,
+      "genre": 6
+    }
+  },
+  {
+    "model": "shop.album",
+    "pk": 18,
+    "fields": {
+      "title": "Born to Die",
+      "price": "1080.00",
+      "in_stock": false,
+      "cover_url": "https://cdn-images.dzcdn.net/images/cover/29d25102cd063abf1affa69143966918/500x500-000000-80-0-0.jpg",
+      "year": 2012,
+      "artist": 12,
+      "genre": 2
+    }
+  }
+]
