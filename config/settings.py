@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "users",
     "cart",
     "notifications",
+    "deezer",
 ]
 
 MIDDLEWARE = [
@@ -155,6 +156,10 @@ LOGGING = {
     },
     "loggers": {
         "notifications": {
+            "handlers": ["console"],
+            "level": "INFO",
+        },
+        "deezer": {
             "handlers": ["console"],
             "level": "INFO",
         },
