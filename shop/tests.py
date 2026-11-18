@@ -1,38 +1,40 @@
-from django.contrib.auth.models import User
-from rest_framework.test import APITestCase
-
-from .models import Album, Artist, Genre
+import pytest
 
 
-class WishlistTests(APITestCase):
-    def setUp(self):
-        self.user = User.objects.create_user(
-            username="testuser", password="StrongPass2026!"
-        )
-        artist = Artist.objects.create(name="The Beatles")
-        genre = Genre.objects.create(name="Rock")
-        self.album = Album.objects.create(
-            title="Abbey Road", price="25.00", artist=artist, genre=genre
-        )
+@pytest.mark.django_db
+def test_wishlist_without_token(api_client):
+    response = api_client.get("/api/wishlist/", format="json")
+    assert response.status_code == 401
 
-    def test_wishlist_without_token(self):
-        response = self.client.get("/api/wishlist/")
-        self.assertEqual(response.status_code, 401)
 
-    def test_add_to_wishlist(self):
-        self.client.force_authenticate(user=self.user)
-        response = self.client.post("/api/wishlist/", {"album": self.album.id})
-        self.assertEqual(response.status_code, 201)
+@pytest.mark.django_db
+def test_add_to_wishlist(auth_client, album):
+    response = auth_client.post("/api/wishlist/", {"album": album.id}, format="json")
+    assert response.status_code == 201
 
-    def test_add_same_album_twice(self):
-        self.client.force_authenticate(user=self.user)
-        self.client.post("/api/wishlist/", {"album": self.album.id})
-        self.client.post("/api/wishlist/", {"album": self.album.id})
-        response = self.client.get("/api/wishlist/")
-        self.assertEqual(len(response.data), 1)
 
-    def test_delete_from_wishlist(self):
-        self.client.force_authenticate(user=self.user)
-        self.client.post("/api/wishlist/", {"album": self.album.id})
-        response = self.client.delete(f"/api/wishlist/{self.album.id}/")
-        self.assertEqual(response.status_code, 204)
+@pytest.mark.django_db
+def test_add_same_album_twice(auth_client, album):
+    auth_client.post("/api/wishlist/", {"album": album.id}, format="json")
+    auth_client.post("/api/wishlist/", {"album": album.id}, format="json")
+    response = auth_client.get("/api/wishlist/", format="json")
+    assert len(response.data) == 1
+
+
+@pytest.mark.django_db
+def test_delete_from_wishlist(auth_client, album):
+    auth_client.post("/api/wishlist/", {"album": album.id}, format="json")
+    response = auth_client.delete(f"/api/wishlist/{album.id}/", format="json")
+    assert response.status_code == 204
+
+
+@pytest.mark.django_db
+def test_add_unknown_album_to_wishlist(auth_client):
+    response = auth_client.post("/api/wishlist/", {"album": 999}, format="json")
+    assert response.status_code == 404
+
+
+@pytest.mark.django_db
+def test_delete_album_not_in_wishlist(auth_client):
+    response = auth_client.delete("/api/wishlist/999/", format="json")
+    assert response.status_code == 404
