@@ -24,5 +24,6 @@ urlpatterns = [
     path("api/auth/", include("users.urls")),
     path("api/", include("cart.urls")),
     path("api/", include("notifications.urls")),
+    path("api/", include("deezer.urls")),
     path("api/", include("reviews.urls")),
 ]

@@ -1,0 +1,63 @@
+{
+  "info": {
+    "_postman_id": "34fc97e4-03cd-4377-b6a2-8700d8acbd85",
+    "name": "Deezer",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55861304",
+    "_collection_link": "https://go.postman.co/collection/55861304-34fc97e4-03cd-4377-b6a2-8700d8acbd85?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get album tracks",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/albums/17/tracks/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "albums",
+            "17",
+            "tracks",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get album tracks, not found",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/albums/99999/tracks/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "albums",
+            "99999",
+            "tracks",
+            ""
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

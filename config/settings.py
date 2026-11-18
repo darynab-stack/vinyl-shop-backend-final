@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "users",
     "cart",
     "notifications",
+    "deezer",
     "reviews",
 ]
 
@@ -156,6 +157,10 @@ LOGGING = {
     },
     "loggers": {
         "notifications": {
+            "handlers": ["console"],
+            "level": "INFO",
+        },
+        "deezer": {
             "handlers": ["console"],
             "level": "INFO",
         },
