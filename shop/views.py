@@ -3,6 +3,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from notifications.services import notify_subscribers
+
 from .models import Album, Artist, Genre, Wishlist
 from .permissions import IsAdminOrReadOnly
 from .serializers import AlbumSerializer, ArtistSerializer, GenreSerializer
@@ -139,9 +141,12 @@ class AlbumDetailView(APIView):
         except Album.DoesNotExist:
             return Response({"error": "Платівку не знайдено"}, status=404)
 
+        was_in_stock = album.in_stock
         serializer = AlbumSerializer(album, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
+            if not was_in_stock and album.in_stock:
+                notify_subscribers(album)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
