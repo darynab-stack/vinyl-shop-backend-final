@@ -10,11 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+import os
 from datetime import timedelta
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -140,12 +145,30 @@ STATIC_URL = "static/"
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 # Upstream scaffold default: print development email instead of delivering it via SMTP.
-MAILERS = {
-    "default": {
-        "BACKEND": "django.core.mail.backends.console.EmailBackend",
-    },
-}
-DEFAULT_FROM_EMAIL = "Vinyl Shop <noreply@vinylshop.local>"
+GMAIL_USER = os.getenv("GMAIL_USER", "")
+GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
+
+if GMAIL_USER and GMAIL_APP_PASSWORD:
+    MAILERS = {
+        "default": {
+            "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+            "OPTIONS": {
+                "host": "smtp.gmail.com",
+                "port": 587,
+                "use_tls": True,
+                "username": GMAIL_USER,
+                "password": GMAIL_APP_PASSWORD,
+            },
+        },
+    }
+    DEFAULT_FROM_EMAIL = f"Vinyl Shop <{GMAIL_USER}>"
+else:
+    MAILERS = {
+        "default": {
+            "BACKEND": "django.core.mail.backends.console.EmailBackend",
+        },
+    }
+    DEFAULT_FROM_EMAIL = "Vinyl Shop <noreply@vinylshop.local>"
 
 LOGGING = {
     "version": 1,
