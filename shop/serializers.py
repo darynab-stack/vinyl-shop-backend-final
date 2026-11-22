@@ -16,6 +16,9 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class AlbumSerializer(serializers.ModelSerializer):
+    artist_name = serializers.CharField(source="artist.name", read_only=True)
+    genre_name = serializers.CharField(source="genre.name", read_only=True)
+
     class Meta:
         model = Album
         fields = [
@@ -26,5 +29,7 @@ class AlbumSerializer(serializers.ModelSerializer):
             "cover_url",
             "year",
             "artist",
+            "artist_name",
             "genre",
+            "genre_name",
         ]
