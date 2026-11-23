@@ -137,3 +137,44 @@ def test_price_change_does_not_send_email(
     assert response.status_code == 200
     assert len(mailoutbox) == 0
     assert Subscription.objects.count() == 1
+
+
+def admin_form_data(album, in_stock):
+    data = {
+        "title": album.title,
+        "price": album.price,
+        "artist": album.artist.id,
+        "genre": album.genre.id,
+        "cover_url": album.cover_url,
+        "year": album.year or "",
+    }
+    if in_stock:
+        data["in_stock"] = "on"
+    return data
+
+
+@pytest.mark.django_db
+def test_restock_in_admin_sends_email(
+    admin_client, subscriber, out_of_stock_album, mailoutbox
+):
+    Subscription.objects.create(user=subscriber, album=out_of_stock_album)
+    response = admin_client.post(
+        f"/admin/shop/album/{out_of_stock_album.id}/change/",
+        admin_form_data(out_of_stock_album, in_stock=True),
+    )
+    assert response.status_code == 302
+    assert len(mailoutbox) == 1
+
+
+@pytest.mark.django_db
+def test_other_change_in_admin_does_not_send_email(
+    admin_client, subscriber, out_of_stock_album, mailoutbox
+):
+    Subscription.objects.create(user=subscriber, album=out_of_stock_album)
+    data = admin_form_data(out_of_stock_album, in_stock=False)
+    data["price"] = "30.00"
+    response = admin_client.post(
+        f"/admin/shop/album/{out_of_stock_album.id}/change/", data
+    )
+    assert response.status_code == 302
+    assert len(mailoutbox) == 0
