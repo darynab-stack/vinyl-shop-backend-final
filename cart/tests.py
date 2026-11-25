@@ -125,3 +125,13 @@ def test_delete_foreign_item_not_found(auth_client, album):
 def test_delete_missing_item(auth_client):
     response = auth_client.delete("/api/cart/999/", format="json")
     assert response.status_code == 404
+
+
+@pytest.mark.django_db
+def test_add_out_of_stock_album(auth_client, album):
+    album.in_stock = False
+    album.save()
+    response = auth_client.post("/api/cart/", {"album": album.id}, format="json")
+    assert response.status_code == 400
+    assert response.data["error"] == "Цієї платівки немає в наявності"
+    assert CartItem.objects.count() == 0
