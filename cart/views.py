@@ -28,6 +28,10 @@ class CartView(APIView):
         except (Album.DoesNotExist, ValueError, TypeError):
             return Response({"error": "Платівку не знайдено"}, status=404)
 
+        # нова перевірка: платівки немає в наявності
+        if not album.in_stock:
+            return Response({"error": "Цієї платівки немає в наявності"}, status=400)
+
         try:
             quantity = int(request.data.get("quantity", 1))
         except (ValueError, TypeError):
