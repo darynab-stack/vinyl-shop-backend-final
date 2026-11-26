@@ -6,7 +6,7 @@ from shop.models import Album, Artist, Genre
 
 
 @pytest.fixture
-def admin_client():
+def admin_api_client():
     admin = User.objects.create_superuser(
         username="admin",
         password="AdminPass2026!",
@@ -161,14 +161,14 @@ def test_create_album_regular_user_returns_403(auth_client, album):
 
 
 @pytest.mark.django_db
-def test_create_album_admin_returns_201(admin_client, album):
+def test_create_album_admin_returns_201(admin_api_client, album):
     payload = {
         "title": "Let It Be",
         "price": "24.00",
         "artist": album.artist.id,
         "genre": album.genre.id,
     }
-    response = admin_client.post("/api/albums/", payload, format="json")
+    response = admin_api_client.post("/api/albums/", payload, format="json")
     assert response.status_code == 201
     assert response.data["title"] == "Let It Be"
 
@@ -182,8 +182,8 @@ def test_patch_album_regular_user_returns_403(auth_client, album):
 
 
 @pytest.mark.django_db
-def test_patch_album_admin_returns_200(admin_client, album):
-    response = admin_client.patch(
+def test_patch_album_admin_returns_200(admin_api_client, album):
+    response = admin_api_client.patch(
         f"/api/albums/{album.id}/", {"price": "30.00"}, format="json"
     )
     assert response.status_code == 200
@@ -191,8 +191,8 @@ def test_patch_album_admin_returns_200(admin_client, album):
 
 
 @pytest.mark.django_db
-def test_delete_album_admin_returns_204(admin_client, album):
-    response = admin_client.delete(f"/api/albums/{album.id}/")
+def test_delete_album_admin_returns_204(admin_api_client, album):
+    response = admin_api_client.delete(f"/api/albums/{album.id}/")
     assert response.status_code == 204
 
 
@@ -200,3 +200,35 @@ def test_delete_album_admin_returns_204(admin_client, album):
 def test_create_genre_regular_user_returns_403(auth_client):
     response = auth_client.post("/api/genres/", {"name": "Electronic"}, format="json")
     assert response.status_code == 403
+
+
+@pytest.mark.django_db
+def test_patch_album_negative_price_returns_400(admin_api_client, album):
+    response = admin_api_client.patch(
+        f"/api/albums/{album.id}/", {"price": "-5"}, format="json"
+    )
+    assert response.status_code == 400
+    album.refresh_from_db()
+    assert album.price != -5
+
+
+@pytest.mark.django_db
+def test_post_album_negative_price_returns_400(admin_api_client, album):
+    payload = {
+        "title": "Negative Price Album",
+        "price": "-5.00",
+        "artist": album.artist.id,
+        "genre": album.genre.id,
+    }
+    response = admin_api_client.post("/api/albums/", payload, format="json")
+    assert response.status_code == 400
+
+
+@pytest.mark.django_db
+def test_patch_album_zero_price_returns_200(admin_api_client, album):
+    response = admin_api_client.patch(
+        f"/api/albums/{album.id}/", {"price": "0"}, format="json"
+    )
+    assert response.status_code == 200
+    album.refresh_from_db()
+    assert album.price == 0
