@@ -33,3 +33,8 @@ class AlbumSerializer(serializers.ModelSerializer):
             "genre",
             "genre_name",
         ]
+
+    def validate_price(self, value):
+        if value < 0:
+            raise serializers.ValidationError("Ціна не може бути від'ємною")
+        return value
