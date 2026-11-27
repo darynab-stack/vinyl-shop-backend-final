@@ -105,7 +105,7 @@ _Розділ заповнює Дар'я Мірошніченко._
   "title": "Abbey Road",
   "price": "24.00",
   "in_stock": true,
-  "cover_url": "[https://example.com/abbey-road.jpg]",
+  "cover_url": "https://example.com/abbey-road.jpg",
   "year": 1969,
   "artist": 1,
   "artist_name": "The Beatles",
@@ -125,7 +125,7 @@ _Розділ заповнює Дар'я Мірошніченко._
   {
     "title": "Come Together",
     "duration": 259,
-    "preview": "[https://cdns-preview-e.dzcdn.net/stream/c-example.mp3]"
+    "preview": "https://cdns-preview-e.dzcdn.net/stream/c-example.mp3"
   }
 ]
 ```
